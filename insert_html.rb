@@ -8,6 +8,7 @@
 #   base path where files to include are exists:
 #
 # Script by http://nicher.jp/
+# http://yananob.blogspot.jp/2005/04/tdiary.html
 # You can distribute this under GPL.
 #
 
