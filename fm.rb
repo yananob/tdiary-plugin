@@ -12,6 +12,8 @@
 #   mark:       facemark.
 #   filename:   Image filename.
 #
+# Document: http://yananob.blogspot.jp/2005/04/tdiary.html
+# 
 # Script by http://nicher.jp/ based on kw.rb & template.rb
 # You can distribute this under GPL.
 #
@@ -109,7 +111,7 @@ function inj_fm(val){
 }
 //-->
 </script>
-<div class="field title">��ʸ��: #{fm_line}</div>
+<div class="field title">顔文字: #{fm_line}</div>
 HTML
 end
 
@@ -118,13 +120,13 @@ end
 #
 unless @resource_loaded then
 	def fm_label
-		"��ʸ���ץ饰����"
+		"顔文字プラグイン"
 	end
 end
 
 add_conf_proc( 'fm', fm_label ) do
 	if @mode == 'saveconf' then
-#		ɬ��"/"�ǽ����褦����¸
+#		必ず"/"で終わるように保存
 		baseurl = @cgi.params['fm.baseurl'][0]
 		baseurl += "/" if (not baseurl.match(/\/$/))
 		@conf['fm.baseurl'] = baseurl
@@ -144,28 +146,28 @@ add_conf_proc( 'fm', fm_label ) do
 		dic.delete( nil )
 	end
 	<<-HTML
-	<p>����Υ����ȤؤΥ�󥯤򡢴�ñ�ʵ��Ҥ��������뤿��Υץ饰����(fm)�Ǥ���</p>
+	<p>特定のサイトへのリンクを、簡単な記述で生成するためのプラグイン(fm)です。</p>
 	<br>
-	<h3>�����Υ١������ɥ쥹�λ���</h3>
-	<p>��ʸ���������֤���Ƥ���ե�����ؤ�URL����ꤷ�ޤ���<br>
-	�ʺǸ��"/"�ǽ����褦�ˡ�</p>
+	<h3>画像のベースアドレスの指定</h3>
+	<p>顔文字画像が置かれているフォルダへのURLを指定します。<br>
+	（最後は"/"で終わるように）</p>
 	<p><input type="text" name="fm.baseurl" size="70" value="#{@conf['fm.baseurl']}">
 	<br>
-	<h3>��ʸ���ꥹ�Ȥλ���</h3>
-	<p>�ִ�ʸ�� �����ե�����̾�פȡ�����Ƕ��ڤäƻ��ꤷ�ޤ���<br>
-	�㤨�С�</p>
+	<h3>顔文字リストの指定</h3>
+	<p>「顔文字 画像ファイル名」と、空白で区切って指定します。<br>
+	例えば、</p>
 	<pre>:) smile.png</pre>
-	<p>�Ȼ��ꤷ�ơ�</p>
+	<p>と指定して、</p>
 	<pre>&lt;%=fm(':)')%&gt;</pre>
-	<p>�Τ褦�������˽񤱤С��д�δ�ʸ��������ɽ������ޤ���<br>
-	(������ˡ�ϥ�������ˤ�ä��Ѥ��ޤ�)��</p>
+	<p>のように日記に書けば、笑顔の顔文字画像が表示されます。<br>
+	(記述方法はスタイルによって変わります)。</p>
 	<p><textarea name="fm.dic" cols="70" rows="10">#{dic.collect{|a|a.flatten.join( " " )}.join( "\n" )}</textarea>
 	<br>
-	<h3>��ĥ��������λ���</h3>
-	<p>�������Ф��ƻ��ꤹ�륹�����륷���Ȼ��꤬������ϡ������˻��ꤷ�ޤ���<br>
-	�㤨�С�</p>
+	<h3>拡張スタイルの指定</h3>
+	<p>画像に対して指定するスタイルシート指定がある場合は、ここに指定します。<br>
+	例えば、</p>
 	<pre>border-width: 0px;</pre>
-	<p>�Τ褦�˻��ꤹ��ȡ������Υե���0px�ˤʤ�ޤ���</p>
+	<p>のように指定すると、画像のフチが0pxになります。</p>
 	<p><input type="text" name="fm.style" size="70" value="#{@conf['fm.style']}"></p>
 	HTML
 end
