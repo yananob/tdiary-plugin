@@ -8,7 +8,6 @@
 #   base path where files to include are exists:
 #
 # Script by http://nicher.jp/
-# http://yananob.blogspot.jp/2005/04/tdiary.html
 # You can distribute this under GPL.
 #
 
@@ -21,7 +20,7 @@
 #
 def insert_html( filename )
 	
-#	¥¢¥ë¥Õ¥¡¥Ù¥Ã¥È¡¢¥Ô¥ê¥ª¥É¡¢¥¢¥ó¥À¡¼¥Ğ¡¼¡¢¥Ï¥¤¥Õ¥ó°Ê³°¤¬´Ş¤Ş¤ì¤¿¤é¡¢¥¨¥é¡¼¤È¤¹¤ë
+#	ã‚¢ãƒ«ãƒ•ã‚¡ãƒ™ãƒƒãƒˆã€ãƒ”ãƒªã‚ªãƒ‰ã€ã‚¢ãƒ³ãƒ€ãƒ¼ãƒãƒ¼ã€ãƒã‚¤ãƒ•ãƒ³ä»¥å¤–ãŒå«ã¾ã‚ŒãŸã‚‰ã€ã‚¨ãƒ©ãƒ¼ã¨ã™ã‚‹
 	if (filename.match(/[^A-Za-z0-9\._-]/)) then
 		raise "bad filename: " + filename
 	end
@@ -40,24 +39,24 @@ end
 #
 unless @resource_loaded then
 	def insert_html_label
-		"HTMLÁŞÆş¥×¥é¥°¥¤¥ó"
+		"HTMLæŒ¿å…¥ãƒ—ãƒ©ã‚°ã‚¤ãƒ³"
 	end
 end
 
 add_conf_proc( 'insert_html', insert_html_label ) do
 	if @mode == 'saveconf' then
-#		É¬¤º"/"¤Ç½ª¤ï¤ë¤è¤¦¤ËÊİÂ¸
+#		å¿…ãš"/"ã§çµ‚ã‚ã‚‹ã‚ˆã†ã«ä¿å­˜
 		htmlpath = @cgi.params['insert_html.htmlpath'][0]
 		htmlpath += "/" if (not htmlpath.match(/\/$/))
 		@conf['insert_html.htmlpath'] = htmlpath
 		
 	end
 	<<-HTML
-	<p>»ØÄê¤·¤¿HTML¥Õ¥¡¥¤¥ë¤òÆÉ¤ß¹ş¤ó¤ÇÉ½¼¨¤¹¤ë¥×¥é¥°¥¤¥ó¤Ç¤¹¡£</p>
-	<h3>HTML¥Õ¥¡¥¤¥ë¤ÎÇÛÃÖ¥Ñ¥¹¤Î»ØÄê</h3>
-	<p>HTML¥Õ¥¡¥¤¥ë¤¬ÃÖ¤«¤ì¤Æ¤¤¤ë¥Õ¥©¥ë¥À¤Ø¤ÎURL¤ò»ØÄê¤·¤Ş¤¹¡£<br>
-	¡ÊºÇ¸å¤Ï"/"¤Ç½ª¤ï¤ë¤è¤¦¤Ë¡Ë</p>
-	<p>°ÂÁ´¤Î¤¿¤á¡¢¤³¤³¤Ç»ØÄê¤·¤¿¥Ñ¥¹°Ê³°¤Î¥Õ¥¡¥¤¥ë¤Ï»²¾È¤Ç¤­¤Ş¤»¤ó¡£</p>
+	<p>æŒ‡å®šã—ãŸHTMLãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã¿è¾¼ã‚“ã§è¡¨ç¤ºã™ã‚‹ãƒ—ãƒ©ã‚°ã‚¤ãƒ³ã§ã™ã€‚</p>
+	<h3>HTMLãƒ•ã‚¡ã‚¤ãƒ«ã®é…ç½®ãƒ‘ã‚¹ã®æŒ‡å®š</h3>
+	<p>HTMLãƒ•ã‚¡ã‚¤ãƒ«ãŒç½®ã‹ã‚Œã¦ã„ã‚‹ãƒ•ã‚©ãƒ«ãƒ€ã¸ã®URLã‚’æŒ‡å®šã—ã¾ã™ã€‚<br>
+	ï¼ˆæœ€å¾Œã¯"/"ã§çµ‚ã‚ã‚‹ã‚ˆã†ã«ï¼‰</p>
+	<p>å®‰å…¨ã®ãŸã‚ã€ã“ã“ã§æŒ‡å®šã—ãŸãƒ‘ã‚¹ä»¥å¤–ã®ãƒ•ã‚¡ã‚¤ãƒ«ã¯å‚ç…§ã§ãã¾ã›ã‚“ã€‚</p>
 	<p><input type="text" name="insert_html.htmlpath" size="70" value="#{@conf['insert_html.htmlpath']}">
 	<br>
 	HTML
